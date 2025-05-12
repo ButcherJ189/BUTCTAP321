@@ -3,7 +3,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler
 
 # Replace with your actual BotFather API token
-BOT_TOKEN = 'YOUR_API_TOKEN_HERE'  # Replace this with your actual token
+BOT_TOKEN = '8139405023:AAFMgOTyTViauEXeN6-8xb8EyPiOXa2Rw7g'  # Replace this with your actual token
 
 # Setup logging to debug the bot
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
