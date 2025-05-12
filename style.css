@@ -1,52 +1,29 @@
-body {
-  background-color: #0d0d0d;
+button {
+  background-color: #0ff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
   font-family: 'Orbitron', sans-serif;
-  color: #0ff;
-  text-align: center;
-  margin: 0;
-  padding: 20px;
-}
-
-.neon-text {
-  font-size: 2em;
-  color: #0ff;
-  text-shadow:
-    0 0 5px #0ff,
-    0 0 10px #0ff,
-    0 0 20px #0ff,
-    0 0 40px #0ff;
-}
-
-#grid {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 15px;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.square {
-  width: 100px;
-  height: 100px;
-  background-color: #1a1a1a;
-  border: 2px solid #0ff;
-  border-radius: 10px;
-  font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
+  font-size: 1em;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  margin: 10px;
+  transition: 0.3s;
 }
 
-.square:hover {
-  background-color: #262626;
-  transform: scale(1.05);
+button:hover {
+  background-color: #0cc;
 }
 
-#score {
-  margin-top: 20px;
-  font-size: 1.5em;
+.hidden {
+  display: none;
+}
+
+#instructions {
+  background-color: #111;
+  padding: 15px;
+  margin-top: 10px;
+  border: 1px solid #0ff;
+  border-radius: 8px;
   color: #0ff;
 }
