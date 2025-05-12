@@ -2,33 +2,44 @@ import logging
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler
 
-# Replace with your actual API token from BotFather
-BOT_TOKEN = '8139405023:AAFMgOTyTViauEXeN6-8xb8EyPiOXa2Rw7g'  # Place your actual API token from BotFather here
+# Replace with your actual BotFather API token
+BOT_TOKEN = 'YOUR_API_TOKEN_HERE'  # Replace this with your actual token
 
-# Initialize the Updater and the Dispatcher
-updater = Updater(BOT_TOKEN, use_context=True)
-dispatcher = updater.dispatcher
-
-# Set up logging to help with debugging
+# Setup logging to debug the bot
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Function that shows the inline button to start the game
+# Define the start command
 def start(update, context):
+    # Logging for debugging
+    logger.info("Received /start command")
+    
     # Create an inline button that links to the Nocto Tapper game
     keyboard = [
         [InlineKeyboardButton("Play Nocto Tapper", url="https://nocto-tapper.vercel.app")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    # Send a welcome message and button
+    update.message.reply_text(
+        "Welcome to the Nocto Tapper game! Press the button below to start playing.",
+        reply_markup=reply_markup
+    )
 
-    # Send the message with the button
-    update.message.reply_text('Welcome to Nocto Tapper! Click the button below to start playing:', reply_markup=reply_markup)
+# Define the main function to set up the bot
+def main():
+    # Initialize the Updater with your bot's API token
+    updater = Updater(BOT_TOKEN, use_context=True)
+    dispatcher = updater.dispatcher
 
-# Add a handler for the '/start' command
-start_handler = CommandHandler('start', start)
-dispatcher.add_handler(start_handler)
+    # Add the handler for the /start command
+    start_handler = CommandHandler('start', start)
+    dispatcher.add_handler(start_handler)
 
-# Start the bot and begin polling
-updater.start_polling()
-updater.idle()
+    # Start the bot and begin polling for messages
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
