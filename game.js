@@ -1,26 +1,39 @@
 const grid = document.getElementById('grid');
 const scoreDisplay = document.getElementById('score');
-let squares = [];
+const squares = [];
 let score = 0;
-let speed = 1000;
+let speed = 1500;
 let interval;
 let current = null;
 
-// Maak 9 vakjes aan
+// Menu logic
+const menu = document.getElementById('menu');
+const game = document.getElementById('game');
+const playBtn = document.getElementById('playBtn');
+const howBtn = document.getElementById('howBtn');
+const instructions = document.getElementById('instructions');
+
+playBtn.onclick = () => {
+  menu.classList.add('hidden');
+  game.classList.remove('hidden');
+  startGame();
+};
+
+howBtn.onclick = () => {
+  instructions.classList.toggle('hidden');
+};
+
+// Create 3x3 grid
 for (let i = 0; i < 9; i++) {
   const div = document.createElement('div');
   div.className = 'square';
-
-  // Tik & klik ondersteunen
   div.addEventListener('click', () => handleClick(i));
   div.addEventListener('touchstart', () => handleClick(i));
-
   grid.appendChild(div);
   squares.push(div);
 }
 
 function showRandom() {
-  // Reset vakjes
   squares.forEach(sq => {
     sq.textContent = '';
     sq.classList.remove('clicked');
@@ -36,21 +49,27 @@ function handleClick(i) {
   if (!current || i !== current.index) return;
 
   const square = squares[i];
-
-  // Klik al geweest?
   if (square.classList.contains('clicked')) return;
   square.classList.add('clicked');
 
   if (current.isRat) {
     score++;
     scoreDisplay.textContent = `Score: ${score}`;
-    if (speed > 300) speed -= 20;
-    clearInterval(interval);
-    interval = setInterval(showRandom, speed);
+
+    if (score >= 5 && speed > 400) {
+      speed -= 50;
+      clearInterval(interval);
+      interval = setInterval(showRandom, speed);
+    }
   } else {
     alert(`Game Over! Final score: ${score}`);
     location.reload();
   }
 }
 
-interval = setInterval(showRandom, speed);
+function startGame() {
+  score = 0;
+  speed = 1500;
+  scoreDisplay.textContent = 'Score: 0';
+  interval = setInterval(showRandom, speed);
+}
