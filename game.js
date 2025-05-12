@@ -6,13 +6,14 @@ let speed = 1500;
 let interval;
 let current = null;
 
-// Menu logic
+// Menu elements
 const menu = document.getElementById('menu');
 const game = document.getElementById('game');
 const playBtn = document.getElementById('playBtn');
 const howBtn = document.getElementById('howBtn');
 const instructions = document.getElementById('instructions');
 
+// Button actions
 playBtn.onclick = () => {
   menu.classList.add('hidden');
   game.classList.remove('hidden');
