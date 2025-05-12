@@ -15,9 +15,9 @@ def start(update, context):
     # Logging for debugging
     logger.info("Received /start command")
     
-    # Create an inline button that links to the Nocto Tapper game
+    # Create an inline button that links to the Nocto Tapper game as a Web App
     keyboard = [
-        [InlineKeyboardButton("Play Nocto Tapper", url="https://nocto-tapper.vercel.app")]
+        [InlineKeyboardButton("Play Nocto Tapper", web_app={"url": "https://nocto-tapper.vercel.app"})]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
